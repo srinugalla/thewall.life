@@ -1,95 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap");
 
-
 * {
   box-sizing: border-box;
 }
 
+/* ===== Base ===== */
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  min-height: 100vh;
-  color: #333;
+  background: #f4f3ef;
+  color: #2c2c2c;
+  font-family: "Inter", sans-serif;
 }
 
-.container {
-  max-width: 700px;
-  margin: 40px auto;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+/* ===== Page Wrapper ===== */
+.page {
+  min-height: 100vh;
+  padding: 48px 20px;
+}
+
+/* ===== Header / Logo ===== */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.logo-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #667eea;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-h1 {
-  margin: 0;
+  display: inline-block;
+  border: 1px solid #2c2c2c;
+  padding: 10px 24px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 4px;
   font-size: 28px;
+}
+
+.tagline {
+  font-family: "Playfair Display", serif;
+  font-size: 40px;
+  margin: 32px 0 8px;
+}
+
+.subtext {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ===== Composer ===== */
+.composer {
+  max-width: 720px;
+  margin: 0 auto 56px;
 }
 
 input,
 textarea {
   width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  background: #fff;
   font-family: inherit;
+  font-size: 14px;
 }
 
 textarea {
   resize: none;
-  height: 80px;
+  min-height: 100px;
 }
 
 button {
-  margin-top: 12px;
-  background: #667eea;
-  color: white;
+  margin-top: 16px;
+  background: #2c2c2c;
+  color: #fff;
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
+  padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #5a6fd8;
+  opacity: 0.9;
 }
 
-.message {
-  background: #f7f8ff;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 12px;
-}
-
-.message strong {
-  color: #667eea;
-}
-
+/* ===== Featured ===== */
 .featured {
-  background: #fff4cc;
-  border-left: 6px solid #f5b400;
+  max-width: 720px;
+  margin: 0 auto 48px;
+  padding-left: 16px;
+  border-left: 4px solid #2c2c2c;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
 }
 
+/* ===== Wall ===== */
+.wall {
+  max-width: 720px;
+  margin: auto;
+}
+
+.post {
+  border-bottom: 1px solid #ddd;
+  padding: 18px 0;
+}
+
+.post p {
+  margin: 0 0 6px;
+}
+
+.post small {
+  color: #777;
+}
+
+.toggle {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ===== Footer ===== */
+footer {
+  margin-top: 64px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}

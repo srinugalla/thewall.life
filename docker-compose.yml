@@ -7,9 +7,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: sqlite:///./wall.db
+      DATABASE_URL: sqlite:///./data/wall.db
     volumes:
-      - backend_data:/app
+      - backend_data:/app/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s

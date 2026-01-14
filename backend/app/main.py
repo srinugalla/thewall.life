@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from .database import SessionLocal, engine
 from .models import Base, Message
@@ -29,15 +30,30 @@ def health():
 
 @app.get("/messages")
 def get_messages(db: Session = Depends(get_db)):
-    return db.query(Message).order_by(Message.created_at.desc()).limit(50).all()
+    messages = (
+        db.query(Message)
+        .order_by(Message.created_at.desc())
+        .limit(50)
+        .all()
+    )
+    return messages
+
+
+# 👇 JSON request body
+class MessageCreate(BaseModel):
+    content: str
+    username: str = "anonymous"
+
 
 @app.post("/messages")
 def post_message(
-    content: str,
-    username: str = "anonymous",
-    db: Session = Depends(get_db)
+    payload: MessageCreate,
+    db: Session = Depends(get_db),
 ):
-    msg = Message(content=content, username=username)
+    msg = Message(
+        content=payload.content,
+        username=payload.username,
+    )
     db.add(msg)
     db.commit()
     db.refresh(msg)
