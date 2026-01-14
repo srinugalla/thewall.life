@@ -1,0 +1,16 @@
+# Node
+node_modules/
+build/
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Database
+*.db
+
+# OS / Editor
+.DS_Store
+.vscode/
