@@ -1,177 +1,139 @@
-thewall.life
+# thewall.life
 
-thewall.life is a lightweight, containerized message wall application designed to demonstrate modern DevOps practices, clean service separation, and CI/CD automation using Docker and Jenkins.
+**thewall.life** is a lightweight, containerized message wall application built with a DevOps-first mindset.  
+The application itself is intentionally simple, while the focus is on clean architecture, containerization, and CI/CD automation.
 
-The project intentionally keeps the application logic simple while focusing on infrastructure, deployment, and operational correctness.
+---
 
-🚀 Features
+## Features
 
-Anonymous or named message posting
+- Post anonymous or named messages
+- Featured message + recent posts
+- REST API backend
+- Stateless frontend served via Nginx
+- Health checks for service monitoring
+- Dockerized frontend and backend
+- Jenkins-based CI/CD pipeline
 
-Featured message + recent posts view
+---
 
-RESTful backend API
+## Tech Stack
 
-Stateless frontend, API-driven UI
+**Application**
+- Frontend: React (Nginx)
+- Backend: FastAPI (Python)
+- Database: SQLite (development & small-scale production)
 
-Health checks for service monitoring
+**DevOps / Infrastructure**
+- Docker & Docker Compose
+- Jenkins (Pipeline as Code)
+- GitHub
+- Nginx
+- Health checks & environment-based config
 
-CI/CD pipeline with Jenkins
+---
 
-Dockerized for consistent local and server deployments
+## Architecture
 
-🧱 Tech Stack
-Application
-
-Frontend: React (served via Nginx)
-
-Backend: FastAPI (Python)
-
-Database: SQLite (development & small-scale deployments)
-
-DevOps / Infrastructure
-
-Containerization: Docker, Docker Compose
-
-CI/CD: Jenkins (Pipeline as Code)
-
-Web Server: Nginx
-
-Version Control: GitHub
-
-Deployment Model: Single-host Docker (production-ready baseline)
-
-🏗 Architecture Overview
 Browser
-   ↓
+↓
 Nginx (Frontend)
-   ↓
+↓
 FastAPI Backend
-   ↓
+↓
 SQLite Database
 
 
-Frontend communicates with backend via REST API
+- Frontend communicates with backend via REST
+- Backend exposes `/health` endpoint
+- Services are isolated and networked via Docker Compose
 
-Backend exposes health endpoint for monitoring
+---
 
-Services are isolated and networked via Docker Compose
+## Repository Structure
 
-Environment variables control service configuration
-
-📁 Repository Structure
 thewall.life/
-├── frontend/        # React app + Nginx config
-├── backend/         # FastAPI app, models, DB config
+├── frontend/
+├── backend/
 ├── docker-compose.yml
-├── Jenkinsfile      # CI/CD pipeline
+├── Jenkinsfile
 └── README.md
 
-⚙️ Local Development
-Prerequisites
 
-Docker
+---
 
-Docker Compose
+## Local Setup
 
-Git
+### Prerequisites
+- Docker
+- Docker Compose
+- Git
 
-Run locally
+### Run locally
+
+```bash
 docker compose up --build
 
+```
+- Frontend: http://localhost:3000
 
-Services:
+- Backend: http://localhost:8000
 
-Frontend: http://localhost:3000
+- Health check: http://localhost:8000/health
 
-Backend: http://localhost:8000
-
-Health check: http://localhost:8000/health
-
-🔄 CI/CD Pipeline (Jenkins)
+**CI/CD (Jenkins)
 
 The project uses Jenkins Pipeline as Code.
 
-Pipeline stages:
+Pipeline flow:
 
-Source checkout from GitHub
+1. GitHub checkout
 
-Docker image build
+2. Docker image build
 
-Container deployment via Docker Compose
+3. Deployment using Docker Compose
 
-A single push to main triggers:
+A push to the main branch triggers an automated redeploy.
 
-Automated build
+**Configuration
 
-Container restart
+Environment variables:
 
-Application redeploy
-
-This setup mirrors real-world small-team production pipelines.
-
-🔐 Configuration
-
-Key environment variables:
-
-Variable	Description
-REACT_APP_API_URL	Backend API base URL
+Variable	Purpose
+REACT_APP_API_URL	Backend API URL
 DATABASE_URL	Database connection string
 
-Configured via:
+Configured via Docker Compose and Jenkins.
 
-docker-compose.yml
+**Health & Stability
 
-Jenkins environment
+- Backend health endpoint: /health
 
-🩺 Health & Stability
+- Docker health checks ensure proper startup order
 
-Backend exposes /health endpoint
+- Nginx used for frontend stability and performance
 
-Docker healthchecks used for service readiness
+**Production Notes
 
-Frontend served via Nginx for stability and performance
+- SQLite is sufficient for low traffic and demos
 
-📈 Production Notes
+- Architecture supports easy migration to PostgreSQL
 
-SQLite is sufficient for low traffic and demos
+- Easily extensible with HTTPS, reverse proxy, or Kubernetes
 
-Architecture supports easy migration to PostgreSQL
+**Author Notes
 
-Can be extended with:
+This project demonstrates real-world DevOps practices:
 
-Reverse proxy (Nginx / Traefik)
+- Clear service separation
 
-HTTPS (Let’s Encrypt)
+- Repeatable deployments
 
-Kubernetes deployment
+- Infrastructure as code
 
-Persistent volumes for database
+- Minimal manual intervention
 
-🛠 Future Improvements
+Simple application. Solid execution.
 
-Authentication (optional, privacy-first)
 
-Rate limiting
-
-Message moderation tools
-
-PostgreSQL support
-
-Kubernetes manifests / Helm chart
-
-Observability (logs, metrics)
-
-👷 Author Notes
-
-This project is built with a DevOps-first mindset:
-
-Clear service boundaries
-
-Repeatable deployments
-
-Minimal manual steps
-
-Infrastructure treated as code
-
-It is intentionally simple in functionality but solid in execution.
+---
