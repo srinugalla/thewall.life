@@ -81,7 +81,9 @@ docker compose up --build
 
 - Health check: http://localhost:8000/health
 
-**CI/CD (Jenkins)
+---
+
+### CI/CD (Jenkins)
 
 The project uses Jenkins Pipeline as Code.
 
@@ -95,7 +97,9 @@ Pipeline flow:
 
 A push to the main branch triggers an automated redeploy.
 
-**Configuration
+---
+
+### Configuration
 
 Environment variables:
 
@@ -105,7 +109,9 @@ DATABASE_URL	Database connection string
 
 Configured via Docker Compose and Jenkins.
 
-**Health & Stability
+---
+
+### Health & Stability
 
 - Backend health endpoint: /health
 
@@ -113,7 +119,9 @@ Configured via Docker Compose and Jenkins.
 
 - Nginx used for frontend stability and performance
 
-**Production Notes
+---
+
+### Production Notes
 
 - SQLite is sufficient for low traffic and demos
 
@@ -121,7 +129,9 @@ Configured via Docker Compose and Jenkins.
 
 - Easily extensible with HTTPS, reverse proxy, or Kubernetes
 
-**Author Notes
+---
+
+### Author Notes
 
 This project demonstrates real-world DevOps practices:
 
