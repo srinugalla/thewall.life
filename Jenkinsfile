@@ -1,44 +1,36 @@
 pipeline {
-    agent any
+  agent any
 
-    environment {
-        APP_NAME = "thewall"
+  stages {
+
+    stage('Clean Workspace') {
+      steps {
+        deleteDir()
+      }
     }
 
-    stages {
-
-        stage('Clean Workspace') {
-          steps {
-            deleteDir()
-          }
-        }
-
-        stage('Build Images') {
-            steps {
-                sh 'docker-compose build --no-cache'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                echo "No tests yet"
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
+    stage('Checkout Code') {
+      steps {
+        git branch: 'main',
+            credentialsId: 'github-creds',
+            url: 'https://github.com/srinugalla/thewall.life.git'
+      }
     }
 
-    post {
-        success {
-            echo "Deployment successful 🚀"
-        }
-        failure {
-            echo "Pipeline failed ❌"
-        }
+    stage('Build Images') {
+      steps {
+        sh '''
+          docker-compose build --no-cache
+        '''
+      }
     }
+
+    stage('Deploy') {
+      steps {
+        sh '''
+          docker-compose up -d
+        '''
+      }
+    }
+  }
 }
-
