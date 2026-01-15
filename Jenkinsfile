@@ -2,25 +2,16 @@ pipeline {
   agent any
 
   stages {
-
-    stage('Clean Workspace') {
+    stage('Checkout') {
       steps {
-        deleteDir()
-      }
-    }
-
-    stage('Checkout Code') {
-      steps {
-        git branch: 'main',
-            credentialsId: 'github-creds',
-            url: 'https://github.com/srinugalla/thewall.life.git'
+        checkout scm
       }
     }
 
     stage('Build Images') {
       steps {
         sh '''
-          docker-compose build --no-cache
+          docker-compose build
         '''
       }
     }
@@ -28,8 +19,8 @@ pipeline {
     stage('Deploy') {
       steps {
         sh '''
-          docker-compose down -v --remove-orphans || true
-          docker-compose up -d --build
+          docker-compose down || true
+          docker-compose up -d
         '''
       }
     }
