@@ -7,7 +7,7 @@ COPY public ./public
 RUN ls -l src && test -f src/App.js
 ENV NODE_OPTIONS=--max-old-space-size=512
 RUN npm run build
-RUN ls -l src && test -f src/App.js
+
 
 
 FROM nginx:alpine
