@@ -6,12 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git credentialsId: 'github-creds',
-                    url: 'https://github.com/srinugalla/thewall.life.git'
-            }
-        }
+        
 
         stage('Build Images') {
             steps {
