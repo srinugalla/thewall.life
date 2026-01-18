@@ -1,29 +1,29 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir()
+            }
+        }
 
-    stage('Clean Workspace') {
-      steps {
-        deleteDir()
-      }
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Images') {
+            steps {
+                sh 'docker compose build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
     }
-
-    stage('Build Images') {
-      steps {
-        sh '''
-          docker compose build
-        '''
-      }
-    }
-
-    stage('Deploy') {
-      steps {
-        sh '''
-          docker compose down || true
-          docker compose up -d
-        '''
-      }
-    }
-  }
 }
