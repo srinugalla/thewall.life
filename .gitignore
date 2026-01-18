@@ -14,3 +14,9 @@ venv/
 # OS / Editor
 .DS_Store
 .vscode/
+
+githubssh.txt
+githubssh.txt.pub
+*.pem
+*.key
+
