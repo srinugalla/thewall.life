@@ -83,6 +83,14 @@ docker compose up --build
 
 ---
 
+## 🚀 Live Preview (Local)
+
+Frontend UI screenshot:
+
+![The Wall Frontend](screenshots/frontend-preview.png)
+
+---
+
 ### CI/CD (Jenkins)
 
 The project uses Jenkins Pipeline as Code.
